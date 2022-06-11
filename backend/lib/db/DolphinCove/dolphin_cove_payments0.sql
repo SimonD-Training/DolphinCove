@@ -16,28 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tour_companies`
+-- Table structure for table `payments`
 --
 
-DROP TABLE IF EXISTS `tour_companies`;
+DROP TABLE IF EXISTS `payments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tour_companies` (
-  `tour_co_id` int NOT NULL,
-  `tour_company` varchar(100) NOT NULL,
-  `tour_company_address` varchar(255) NOT NULL,
-  PRIMARY KEY (`tour_company`,`tour_company_address`),
-  UNIQUE KEY `tour_co_id_UNIQUE` (`tour_co_id`)
+CREATE TABLE `payments` (
+  `payment_id` int NOT NULL AUTO_INCREMENT,
+  `amnt` int DEFAULT NULL,
+  `statement_date` date NOT NULL,
+  `render_date` date DEFAULT NULL,
+  `payment_method_id` int NOT NULL,
+  `credit` tinyint NOT NULL,
+  `tour_co_id` int DEFAULT NULL,
+  PRIMARY KEY (`payment_id`),
+  KEY `payment_method_id_idx` (`payment_method_id`),
+  KEY `tour_company_id3_idx` (`tour_co_id`),
+  CONSTRAINT `payment_method_id` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`payment_method_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tour_company_id3` FOREIGN KEY (`tour_co_id`) REFERENCES `tour_companies` (`tour_co_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tour_companies`
+-- Dumping data for table `payments`
 --
 
-LOCK TABLES `tour_companies` WRITE;
-/*!40000 ALTER TABLE `tour_companies` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tour_companies` ENABLE KEYS */;
+LOCK TABLES `payments` WRITE;
+/*!40000 ALTER TABLE `payments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `payments` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-09 18:07:19
+-- Dump completed on 2022-06-11 15:25:05

@@ -16,29 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `login`
+-- Table structure for table `vouchers`
 --
 
-DROP TABLE IF EXISTS `login`;
+DROP TABLE IF EXISTS `vouchers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `login` (
-  `email` int NOT NULL,
-  `password` binary(60) NOT NULL,
-  `tour_co_id` int NOT NULL,
-  PRIMARY KEY (`email`),
-  UNIQUE KEY `tour_co_id_UNIQUE` (`tour_co_id`),
-  CONSTRAINT `tour_company_id2` FOREIGN KEY (`tour_co_id`) REFERENCES `tour_companies` (`tour_co_id`)
+CREATE TABLE `vouchers` (
+  `voucher_id` int NOT NULL AUTO_INCREMENT,
+  `voucher` int NOT NULL,
+  `date` date NOT NULL,
+  `payment_id` int NOT NULL,
+  PRIMARY KEY (`voucher`,`date`,`payment_id`),
+  UNIQUE KEY `voucher_id_UNIQUE` (`voucher_id`),
+  KEY `payment_id_idx` (`payment_id`),
+  CONSTRAINT `payment_id` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`payment_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `login`
+-- Dumping data for table `vouchers`
 --
 
-LOCK TABLES `login` WRITE;
-/*!40000 ALTER TABLE `login` DISABLE KEYS */;
-/*!40000 ALTER TABLE `login` ENABLE KEYS */;
+LOCK TABLES `vouchers` WRITE;
+/*!40000 ALTER TABLE `vouchers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vouchers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-09 18:07:20
+-- Dump completed on 2022-06-11 15:25:06

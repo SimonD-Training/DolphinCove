@@ -16,29 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `programs`
+-- Table structure for table `defaults`
 --
 
-DROP TABLE IF EXISTS `programs`;
+DROP TABLE IF EXISTS `defaults`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `programs` (
-  `program_id` int NOT NULL AUTO_INCREMENT,
-  `program_name` varchar(45) NOT NULL,
-  `program_cost` int NOT NULL,
-  `datetime` datetime NOT NULL,
-  PRIMARY KEY (`program_name`,`datetime`),
-  UNIQUE KEY `program_id_UNIQUE` (`program_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `defaults` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `voucher` int NOT NULL,
+  `payment_id` int NOT NULL,
+  `tour_co_id` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `programs`
+-- Dumping data for table `defaults`
 --
 
-LOCK TABLES `programs` WRITE;
-/*!40000 ALTER TABLE `programs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `programs` ENABLE KEYS */;
+LOCK TABLES `defaults` WRITE;
+/*!40000 ALTER TABLE `defaults` DISABLE KEYS */;
+INSERT INTO `defaults` VALUES (1,0,0,0);
+/*!40000 ALTER TABLE `defaults` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-09 18:07:19
+-- Dump completed on 2022-06-11 15:25:06

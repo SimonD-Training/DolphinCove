@@ -16,35 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `vouchers`
+-- Table structure for table `programs`
 --
 
-DROP TABLE IF EXISTS `vouchers`;
+DROP TABLE IF EXISTS `programs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `vouchers` (
-  `voucher` int NOT NULL,
-  `date` date NOT NULL,
-  `tour_co_id` int NOT NULL,
-  `payment_id` int NOT NULL,
-  `program_id` int NOT NULL,
-  PRIMARY KEY (`voucher`,`date`,`tour_co_id`),
-  KEY `tour_company_id_idx` (`tour_co_id`),
-  KEY `program_id_idx` (`program_id`),
-  KEY `payment_id_idx` (`payment_id`),
-  CONSTRAINT `payment_id` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`payment_id`),
-  CONSTRAINT `program_id` FOREIGN KEY (`program_id`) REFERENCES `programs` (`program_id`),
-  CONSTRAINT `tour_company_id` FOREIGN KEY (`tour_co_id`) REFERENCES `tour_companies` (`tour_co_id`)
+CREATE TABLE `programs` (
+  `program_id` int NOT NULL AUTO_INCREMENT,
+  `program_name` varchar(45) NOT NULL,
+  `program_cost` int NOT NULL,
+  `datetime` datetime NOT NULL,
+  PRIMARY KEY (`program_name`,`datetime`),
+  UNIQUE KEY `program_id_UNIQUE` (`program_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `vouchers`
+-- Dumping data for table `programs`
 --
 
-LOCK TABLES `vouchers` WRITE;
-/*!40000 ALTER TABLE `vouchers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `vouchers` ENABLE KEYS */;
+LOCK TABLES `programs` WRITE;
+/*!40000 ALTER TABLE `programs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `programs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-09 18:07:20
+-- Dump completed on 2022-06-11 15:25:06
