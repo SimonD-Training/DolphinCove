@@ -28,7 +28,7 @@ app.use(
 );
 
 //.....View Engine.....//
-app.set("views", "frontend/views")
+app.set("views", "frontend/views");
 app.set("view engine", "ejs");
 
 //.....Static Resources.....//
