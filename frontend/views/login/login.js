@@ -1,5 +1,5 @@
-const index = (req, res) => {
-    res.render("login");
+const login = (req, res) => {
+    res.render("login/login");
 }
 
-module.exports = index;
+module.exports = login;

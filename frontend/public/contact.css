@@ -1,0 +1,23 @@
+.logo img {
+    width: 9%;
+    float: left;
+    margin-left: 3%;
+    margin-top: 1%;
+}
+.nav {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+.nav > a {
+    height: fit-content;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    padding-top: 1.5%;
+    color: rgb(1, 1, 129);
+}

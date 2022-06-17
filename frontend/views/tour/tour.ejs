@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="/booking.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+            integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"
+        />
+        <!--Replace with your tailwind.css once created-->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
+        />
+        <link rel="stylesheet" href="/staff.css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="/staff.js"></script>
+        <style>
+            .nunito {
+                font-family: "nunito", font-sans;
+            }
+
+            .border-b-1 {
+                border-bottom-width: 1px;
+            }
+
+            .border-l-1 {
+                border-left-width: 1px;
+            }
+
+            hover\:border-none:hover {
+                border-style: none;
+            }
+
+            #sidebar {
+                transition: ease-in-out all 0.3s;
+                z-index: 9999;
+            }
+
+            #sidebar span {
+                opacity: 0;
+                position: absolute;
+                transition: ease-in-out all 0.1s;
+            }
+
+            #sidebar:hover {
+                width: 150px;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                /*shadow-2xl*/
+            }
+
+            #sidebar:hover span {
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="nav">
+            <div class="logo">
+                <img src="/assets/logo.png" alt="" />
+            </div>
+            <div class="text">
+                <ul>
+                    <li>CONTACT US</li>
+                    <li>INVESTOR RELATIONS</li>
+                    <li>LOG IN</li>
+                </ul>
+                <button>1-866-393-5158</button>
+            </div>
+        </section>
+        <section class="sub-nav">
+            <h1>Tour Company Name</h1>
+            <h1>Tour Company Address</h1>
+            <h1>Tour Company description <i class="fa fa-pencil" aria-hidden="true"></i></h1>
+        </section>
+        <section class="flex bg-gray-100 font-sans">
+            <main style="width: 100%;">
+                <h2 style="text-align: center">Payments</h2>
+                <form>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Payment ID</th>
+                                <th>Statement Date</th>
+                                <th>Payment Method</th>
+                                <th>Credit</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td><input type="number" name="" id=""></td>
+                                <td><input type="date" name="" id=""></td>
+                                <td><input type="text" name="" id=""></td>
+                                <td>
+                                    Y <input type="radio" name="credit" value="1">
+                                    N <input type="radio" name="credit" value="0">
+                                </td>
+                                <td><input type="submit" value="Create"></td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <% payments.forEach((e)=>{ %>
+                            <tr>
+                                <td><%=e.payment_id%></td>
+                                <td><%=e.statement_date%></td>
+                                <td><%=e.payment_method%></td>
+                                <td><%=e.credit%></td>
+                                <td><button>Edit</button></td>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </form>
+            </main>
+        </section>
+
+        <section class="footer">
+            <div class="section1">
+                <div>Information</div>
+                <div>News</div>
+                <div>About Us</div>
+                <div>Investor Relations</div>
+                <div>Private Policy</div>
+                <div>Terms and Conditions</div>
+            </div>
+            <div class="section2">
+                <div>CONTACT US</div>
+                <div class="number">1-877-344-3385</div>
+                <div>Canada 1-866-793-1905</div>
+                <div>United Kindom 0-800-680-0420</div>
+                <div>Mexico 01-800-727-5391</div>
+                <div>Dominican Republic 1-88-751-9005</div>
+                <div>United States 1-866-393-5158</div>
+                <div>Contact Us</div>
+                <div>PARTNERS:</div>
+                <span
+                    ><img src="/assets/dd-logo.png" alt="" />
+                    <img src="/assets/dc-logo.png" alt=""
+                /></span>
+            </div>
+        </section>
+    </body>
+</html>

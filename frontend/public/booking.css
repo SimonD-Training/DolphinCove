@@ -1,0 +1,111 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+}
+
+/* navbar */
+.logo img {
+  width: 9%;
+  float: left;
+  margin-left: 3%;
+  margin-top: 1%;
+}
+
+.nav ul {
+  display: flex;
+  list-style-type: none;
+  padding-top: 1.5%;
+  color: rgb(1, 1, 129);
+}
+
+li {
+  display: inline;
+  padding-left: 2%;
+  cursor: pointer;
+}
+
+a {
+  display: block;
+  padding: 8 px;
+}
+
+.text button {
+  margin-top: 1.5%;
+  margin-left: 70%;
+  background-color: rgb(255, 235, 10);
+  font-weight: 700;
+  border: none;
+  padding-left: 2%;
+  padding-right: 2%;
+  border-radius: 5%;
+}
+/* end of nav bar */
+/* subnav */
+.sub-nav {
+  margin-top: 5%;
+  background-color: rgb(1, 179, 179);
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.list {
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.list2 {
+  margin-left: 36%;
+}
+/* subnav */
+/* start of awards */
+.footer {
+  background-color: rgb(1, 179, 179);
+  color: white;
+  height: 60vh;
+}
+
+.section1 {
+  float: left;
+  margin-top: 3%;
+  margin-left: 9%;
+}
+
+.section1 div {
+  width: 100%;
+  cursor: pointer;
+}
+
+.section2 {
+  margin-left: 65.3%;
+  padding-top: 3%;
+}
+
+.section2 div {
+  cursor: pointer;
+}
+.banner-image img {
+  width: 100%;
+}
+/* end of awards  */
+/* start of text */
+.text-heading {
+  padding-top: 2%;
+}
+
+.text-heading h1 {
+  margin-left: 32%;
+}
+
+.test h4 {
+ width: 70%;
+ margin-left:15%;
+}
+/* end of text */
