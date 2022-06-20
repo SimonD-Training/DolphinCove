@@ -1,0 +1,98 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+.main_form {
+	height: 90vh;
+	position: relative;
+}
+
+.sec_cont {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 50vh;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+form {
+	display: flex;
+	justify-content: space-around;
+	background: url("./assets/Dolphin_banner_2(Edit).jpg");
+	background-size: cover;
+	background-position-x: -70px;
+	background-repeat: no-repeat;
+	width: 900px;
+	height: 420px;
+}
+
+div div form .box1 {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	width: 390px;
+	padding: 40px;
+	margin-left: -68px;
+	background-color: azure;
+}
+
+.log_info {
+	margin-right: 100px;
+	color: rgb(40, 101, 125);
+}
+
+.field1 {
+	width: 100%;
+}
+
+.field2 {
+	width: 100%;
+}
+
+.btn_box {
+	width: 100%;
+}
+
+.inputs {
+	width: 100%;
+	padding: 5px;
+	border-radius: 5px;
+	border: 2px solid lightblue;
+}
+
+.inputs {
+	outline: none;
+}
+
+.btnn {
+	width: 100%;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid lightblue !important;
+	background: lightblue !important;
+	color: rgb(40, 101, 125);
+	cursor: pointer;
+}
+
+.btnn:active {
+	outline: none;
+}
+
+.pwrd {
+	color: rgba(40, 101, 125, 0.59);
+	cursor: pointer;
+}
+
+div div form .box2 {
+	padding: 40px;
+	float: right;
+	width: 320px;
+	height: 230px;
+}

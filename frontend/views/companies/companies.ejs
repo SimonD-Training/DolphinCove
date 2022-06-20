@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./global.css" />
+        <link rel="stylesheet" href="./companies.css" />
+
+        <title>Tour Companies</title>
+    </head>
+    <body>
+        <!-- Navigation Bar Section -->
+        <header>
+            <div class="logo">
+                <img src="./assets/dc-logo.png" alt="Dolphin Cove" class="DC" />
+            </div>
+            <div class="previous">
+                <a href="/" class="pre">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-caret-left-fill"
+                        viewBox="0 0 16 16"
+                    >
+                        <path
+                            d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"
+                        />
+                    </svg>
+                    Back</a
+                >
+            </div>
+        </header>
+
+        <!-- Main Body Section Consisting of the Catalogs for Tour Companies -->
+        <section>
+            <div class="tour">
+                <p>Tour Companies</p>
+            </div>
+
+            <div class="main_boxes">
+                <% companies.forEach((e) => { %>
+                <!-- Content #1 -->
+                <div class="big_box">
+                    <div class="box_title1">
+                        <p><%=e.tour_company%></p>
+                    </div>
+                    <div
+                        style="
+                            background-image: url('./assets/<%=e.tour_company%>.jpg');
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background-size: cover;
+                            width: 299px;
+                            height: 188px;
+                        "
+                    ></div>
+                    <div class="tour_info"><%=e.tour_company_desc%></div>
+                    <div class="tour_info"><%=e.email%></div>
+                </div>
+                <% }); %>
+            </div>
+        </section>
+    </body>
+</html>

@@ -1,0 +1,109 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	font-family: "Lato", sans-serif;
+}
+
+/* Navigation Bar Styling */
+header {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	background: #ffffff;
+	height: 105px;
+	box-shadow: 7px 4px 17px rgba(0, 0, 0, 0.3);
+	z-index: 1;
+}
+
+.logo {
+	margin-left: 140px;
+}
+
+.DC {
+	width: 140px;
+	height: 70px;
+}
+
+.previous {
+	margin-right: 140px;
+}
+
+.pre {
+	text-decoration: none;
+	font-size: 23px;
+	color: rgb(40, 101, 125);
+}
+
+/* Main Section Styling */
+section {
+	background: #01b3b3;
+	min-height: 910px;
+    height: fit-content;
+}
+
+.tour {
+	margin-left: 220px;
+	padding-top: 80px;
+	padding-bottom: 45px;
+	font-size: 45px;
+	font-weight: 200;
+	color: whitesmoke;
+}
+
+.main_boxes {
+	display: flex;
+    flex-wrap: wrap;
+	width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+	justify-content: space-evenly;
+}
+
+.big_box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 299px;
+	height: 450px;
+	background: azure;
+	box-shadow: 20px 10px 15px rgba(0, 0, 0, 0.3);
+    padding: 5px;
+    margin: 10px;
+}
+
+.box_title1 {
+    width: 100%;
+	margin-top: 30px;
+    margin-bottom: 50px;
+	font-size: 20px;
+	font-weight: 100;
+	color: rgb(40, 101, 125);
+}
+
+.tour_info {
+	width: 100%;
+	justify-content: left;
+    margin-top: 25px;
+}
+
+ul li {
+	padding: 3px 0;
+	list-style-type: circle;
+}
+
+.M_btn {
+	margin-bottom: 30px;
+}
+
+.MI {
+	width: 100%;
+	padding: 6px 18px;
+	font-size: 19px;
+	border: 1px solid #006464;
+	background: #006464;
+	color: whitesmoke;
+	cursor: pointer;
+}

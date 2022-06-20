@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Manage Profile</title>
+        <link rel="stylesheet" href="/global.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+            integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script src="/manage_profile.js"></script>
+        <style>
+            * {
+                border: 1px solid black;
+                letter-spacing: 2px;
+            }
+            table * {
+                text-align: center;
+            }
+            table th,
+            table td {
+                padding: 7px;
+            }
+            table input {
+                width: 80%;
+                border-radius: 0.15rem;
+                padding: 6px;
+
+                margin-bottom: 10px;
+            }
+            table thead {
+                border-bottom: 4px solid #162d6c;
+                margin: 0 5px;
+            }
+
+            footer ul > li > span {
+                font-weight: 800;
+            }
+            .footer-links li {
+                border-bottom: 1px solid white;
+            }
+        </style>
+    </head>
+    <body class="bg-[#5799B3]">
+        <div id="message"></div>
+        <nav class="h-[105px] bg-[#ADD8E6] grid grid-flow-col shadow-md">
+            <div>
+                <a href="/session/tour">
+                    <img
+                        class="ml-[140px] pt-5"
+                        src="https://www.dolphincoveja.com/Content/src/logo.png"
+                        alt=""
+                        width="140"
+                        height="70"
+                    />
+                </a> height="70"
+                />
+            </div>
+        </nav>
+        <div
+            class="mx-20 my-10 text-3xl rounded-t-xl border-4 border-white p-5"
+        >
+            <h1 class="uppercase font-semibold text-[#162F6E]">
+                Profile Management
+            </h1>
+        </div>
+        <section class="p-20 min-h-screen">
+            <table
+                class="w-100 ml-auto shadow-xl rounded-md border-black bg-[#C3C1C1]"
+            >
+                <thead class="rounded-xl">
+                    <tr class="text-lg">
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>Profile</th>
+                        <th>Profile Address</th>
+                        <th>Profile Description</th>
+                        <th>Profile Email</th>
+                        <th>Password</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <form id="form1">
+                    <tfoot>
+                        <tr>
+                            <td>
+                                <a href="javascript: password(<%=tour_company.tour_co_id%>)">
+                                    <i class="fa-solid fa-plus"></i>Password
+                                </a>
+                            </td>
+                            <td>
+                                <a href="javascript: email(<%=tour_company.tour_co_id%>)">
+                                    <i class="fa-solid fa-plus"></i>Email
+                                </a>
+                            </td>
+                            <td>
+                                <button type="submit">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <input
+                                    required
+                                    type="text"
+                                    name="tour_company"
+                                    value="<%=tour_company.tour_company%>"
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    required
+                                    type="text"
+                                    name="tour_company_address"
+                                    value="<%=tour_company.tour_company_address%>"
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    required
+                                    type="text"
+                                    name="tour_company_desc"
+                                    value="<%=tour_company.tour_company_desc%>"
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    required
+                                    type="email"
+                                    name="email"
+                                    value="<%=tour_company.email%>"
+                                />
+                            </td>
+                            <td>
+                                <input type="password" name="password" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </form>
+            </table>
+        </section>
+
+        <footer class="grid grid-cols-2 px-24 py-14 bg-[#162D6C] text-white">
+            <div class="w-[600px]">
+                <ul class="footer-links">
+                    <li><a href="">Information</a></li>
+                    <li><a href="">News</a></li>
+                    <li><a href="">About Us</a></li>
+                    <li><a href="">Investor Relations</a></li>
+                    <li><a href="">Privacy Policy</a></li>
+                    <li><a href="">Terms and conditions</a></li>
+                </ul>
+            </div>
+            <div>
+                <p>CONTACT US</p>
+                <p class="text-2xl">1-877-344-3385</p>
+
+                <ul>
+                    <li><span> Canada </span> 1-866-793-1905</li>
+                    <li><span> United Kingdom </span> 0-800-680-0420</li>
+                    <li><span>Mexico</span> 01-800-727-5391</li>
+                    <li><span> Dominican Republic </span> 1-888-751-9005</li>
+                    <li><span>United States</span> 1-866-393-5158</li>
+                </ul>
+
+                <p class="underline">Contact Us</p>
+                <p>PARTNERS:</p>
+                <br />
+                <div class="flex">
+                    <div>
+                        <img
+                            src=" https://www.dolphincoveja.com/Content/src/dd-logo.png"
+                            alt=""
+                        />
+                    </div>
+                    <div></div>
+                    <img
+                        class="[bg-[#ADD8E6]"
+                        src="https://www.dolphincoveja.com/Content/src/dc-logo.png"
+                        alt=""
+                    />
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -4,7 +4,8 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Staff Dashboard</title>
+        <link rel="stylesheet" href="/global.css" />
         <link rel="stylesheet" href="/booking.css" />
         <link
             rel="stylesheet"
@@ -36,7 +37,7 @@
         />
         <link rel="stylesheet" href="/staff.css" />
         <script src="https://cdn.tailwindcss.com"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
         <script src="/staff.js"></script>
         <style>
             .nunito {
@@ -78,17 +79,19 @@
         </style>
     </head>
     <body>
+        <div id="message"></div>
         <section class="nav">
             <div class="logo">
                 <img src="/assets/logo.png" alt="" />
             </div>
             <div class="text">
                 <ul>
-                    <li>CONTACT US</li>
-                    <li>INVESTOR RELATIONS</li>
-                    <li>LOG IN</li>
+                    <li><a href="/programs">PROGRAMS</a></li>
+                    <li><a href="/companies">TOUR COMPANIES</a></li>
+                    <li><a href="/booking">BOOKING</a></li>
+                    <li><a href="/logout">LOG OUT</a></li>
                 </ul>
-                <button>1-866-393-5158</button>
+                <a href="/contact"><button><i class="fa-solid fa-phone"></i> 1-866-393-5158</button></a>
             </div>
         </section>
         <section class="sub-nav">
@@ -97,31 +100,37 @@
         <section class="flex bg-gray-100 font-sans">
             <main style="width: 100%;">
                 <h2 style="text-align: center">Tour Companies</h2>
-                <form>
+                <form id="form2">
                     <table>
                         <thead>
                             <tr>
                                 <th>Tour Company</th>
-                                <th>E-mail</th>
-                                <th>Address</th>
+                                <th>Tour Company Address</th>
+                                <th>Tour Company Description</th>
+                                <th>Email</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <td><input type="text" name="" id=""></td>
-                                <td><input type="email" name="" id=""></td>
-                                <td><input type="text" name="" id=""></td>
-                                <td><input type="submit" value="Create"></td>
+                                <td><input required type="text" name="tour_company"></td>
+                                <td><input required type="text" name="tour_company_address"></td>
+                                <td><input required type="text" name="tour_company_desc"></td>
+                                <td><input required type="email" name="email"></td>
+                                <td><input required type="submit" value="Create"></td>
                             </tr>
                         </tfoot>
                         <tbody>
                             <% tour_companies.forEach((e)=>{ %>
                             <tr>
                                 <td><%=e.tour_company%></td>
-                                <td><%=e.email%></td>
                                 <td><%=e.tour_company_address%></td>
-                                <td><button>Edit</button></td>
+                                <td><%=e.tour_company_desc%></td>
+                                <td><%=e.email%></td>
+                                <td>
+                                    <a href="/session/staff/manage_tour_co/<%=e.tour_co_id%>">Edit</a>
+                                    <a href="javascript: removeCompany(<%=e.tour_co_id%>)">Remove</a>
+                                </td>
                             </tr>
                             <% }); %>
                         </tbody>
@@ -129,35 +138,46 @@
                 </form>
                 <br> <br>
                 <h2 style="text-align: center">Bookings</h2>
-                <form>
-                    <table>
+                <form id="form1" style="overflow-x: scroll;">
+                    <table class="w-100">
                         <thead>
                             <tr>
-                                <th>Client ID</th>
+                                <th>Fname</th>
+                                <th>Lname</th>
                                 <th>Voucher</th>
                                 <th>Date</th>
-                                <th>Hotel</th>
-                                <th>Program</th>
+                                <th>Payment Method ID</th>
+                                <th>Hotel ID</th>
+                                <th>Program ID</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <td><input type="number" name="" id=""></td>
-                                <td><input type="number" name="" id=""></td>
-                                <td><input type="date" name="" id=""></td>
-                                <td><input type="text" name="" id=""></td>
-                                <td><input type="text" name="" id=""></td>
-                                <td><input type="submit" value="Create"></td>
+                                <td><input required type="text" name="fname" placeholder="First Name"></td>
+                                <td><input required type="text" name="lname" placeholder="Last Name"></td>
+                                <td><input required type="number" name="voucher" placeholder="Voucher"></td>
+                                <td><input required type="date" name="date" placeholder="Date"></td>
+                                <td><input required type="number" name="payment_method_id" placeholder="Payment Method ID"></td>
+                                <td><input required type="number" name="hotel_id" placeholder="Hotel ID"></td>
+                                <td><input required type="number" name="program_id" placeholder="Program ID"></td>
+                                <td><input required type="submit" value="Create"></td>
                             </tr>
                         </tfoot>
                         <tbody>
                             <% bookings.forEach((e)=>{ %>
                             <tr>
-                                <td><%=e.tour_company%></td>
-                                <td><%=e.email%></td>
-                                <td><%=e.tour_company_address%></td>
-                                <td><button>Edit</button></td>
+                                <td><%=e.fname%></td>
+                                <td><%=e.lname%></td>
+                                <td><%=e.voucher%></td>
+                                <td><%=e.date%></td>
+                                <td><%=e.payment_method_id%></td>
+                                <td><%=e.hotel_id%></td>
+                                <td><%=e.program_id%></td>
+                                <td>
+                                    <a href="/session/staff/manage_booking/<%=e.booking_id%>">Edit</a>
+                                    <a href="javascript: removeBooking(<%=e.booking_id%>)">Remove</a>
+                                </td>
                             </tr>
                             <% }); %>
                         </tbody>

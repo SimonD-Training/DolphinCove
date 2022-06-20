@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Available Programs</title>
         <link rel="stylesheet" href="global.css" />
         <link rel="stylesheet" href="booking.css" />
         <link rel="stylesheet" href="programs.css" />
@@ -16,6 +16,12 @@
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
         />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+            integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+            crossorigin="anonymous"
+        />
     </head>
     <body>
         <section class="nav">
@@ -24,11 +30,11 @@
             </div>
             <div class="text">
                 <ul>
-                    <li><a href="">TOUR COMPANIES</a></li>
-                    <li><a href="">BOOKING</a></li>
-                    <li><a href="/login">LOG IN</a></li>
+                    <li><a href="/companies">TOUR COMPANIES</a></li>
+                    <li><a href="/booking">BOOKING</a></li>
+                    <li><a href="<%=url%>"><%=loggedIn%></a></li>
                   </ul>
-                  <a href="/contact"><button>1-866-393-5158</button></a>
+                  <a href="/contact"><button><i class="fa-solid fa-phone"></i> 1-866-393-5158</button></a>
             </div>
         </section>
         <section class="sub-nav">

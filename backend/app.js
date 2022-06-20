@@ -1,7 +1,6 @@
 //.....Requirements.....//
 const express = require("express");
 const dotenv = require("dotenv");
-const body_parser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const api = require("./api/hub");
@@ -16,14 +15,15 @@ const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Listening on port: ${port}..`));
 
 //.....Middlewares.....//
-app.use(body_parser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}))
 app.use(cookieParser());
 app.use(
   session({
-    secret: process.env.SECRET || "fnhe7wmsd,pgr5ojf3g92873-9fbkasxgqw",
+    secret: process.env.SECRET,
     saveUninitialized: true,
     resave: false,
-    cookie: { maxAge: 120000 },
+    cookie: { maxAge: 5 * 60000 },
   })
 );
 

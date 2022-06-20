@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Contact Us</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       form > input,
@@ -24,8 +24,15 @@
         border-bottom: 1px solid rgb(209, 209, 209);
       }
     </style>
+    <link rel="stylesheet" href="global.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="contact.css" />
+    <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+            integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+            crossorigin="anonymous"
+        />
   </head>
   <body>
     <nav class="h-[71px] bg-[#39A4AC] mb-6">
@@ -35,9 +42,9 @@
       <div class="text">
         <ul>
           <li><a href="/programs">PROGRAMS</a></li>
-          <li><a href="">TOUR COMPANIES</a></li>
-          <li><a href="">BOOKING</a></li>
-          <li><a href="/login">LOG IN</a></li>
+          <li><a href="/companies">TOUR COMPANIES</a></li>
+          <li><a href="/booking">BOOKING</a></li>
+          <li><a href="<%=url%>"><%=loggedIn%></a></li>
         </ul>
       </div>
     </nav>
@@ -166,8 +173,7 @@
 
     <iframe
       src="https://www.google.com/maps/d/embed?mid=1kCTTMOMDuh6wvFQMtM1L12KqApU&ehbc=2E312F"
-      width="1920"
-      height="600"
+      style="width: 100vw; height: 80vh"
     ></iframe>
     <footer class="grid grid-cols-2 bg-[#39A4AC] text-white p-5">
       <d n nn  n  ,l nkkiv class="w-[700px]">

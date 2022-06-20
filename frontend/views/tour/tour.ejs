@@ -4,7 +4,8 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Tour Company Dashboard</title>
+        <link rel="stylesheet" href="/global.css" />
         <link rel="stylesheet" href="/booking.css" />
         <link
             rel="stylesheet"
@@ -36,8 +37,8 @@
         />
         <link rel="stylesheet" href="/staff.css" />
         <script src="https://cdn.tailwindcss.com"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="/staff.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script src="/tour.js"></script>
         <style>
             .nunito {
                 font-family: "nunito", font-sans;
@@ -78,28 +79,30 @@
         </style>
     </head>
     <body>
+        <div id="message"></div>
         <section class="nav">
             <div class="logo">
                 <img src="/assets/logo.png" alt="" />
             </div>
             <div class="text">
                 <ul>
-                    <li>CONTACT US</li>
-                    <li>INVESTOR RELATIONS</li>
-                    <li>LOG IN</li>
+                    <li><a href="/programs">PROGRAMS</a></li>
+                    <li><a href="/companies">TOUR COMPANIES</a></li>
+                    <li><a href="/booking">BOOKING</a></li>
+                    <li><a href="/logout">LOG OUT</a></li>
                 </ul>
-                <button>1-866-393-5158</button>
+                <a href="/contact"><button><i class="fa-solid fa-phone"></i> 1-866-393-5158</button></a>
             </div>
         </section>
         <section class="sub-nav">
-            <h1>Tour Company Name</h1>
-            <h1>Tour Company Address</h1>
-            <h1>Tour Company description <i class="fa fa-pencil" aria-hidden="true"></i></h1>
+            <h1><%=company.tour_company%></h1>
+            <h1><%=company.tour_company_address%></h1>
+            <h1><%=company.tour_company_desc%> <a href="/session/tour/manage_profile"><i class="fa fa-pencil" aria-hidden="true"></i></a></h1>
         </section>
         <section class="flex bg-gray-100 font-sans">
             <main style="width: 100%;">
                 <h2 style="text-align: center">Payments</h2>
-                <form>
+                <form id="form1">
                     <table>
                         <thead>
                             <tr>
@@ -112,9 +115,9 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <td><input type="number" name="" id=""></td>
-                                <td><input type="date" name="" id=""></td>
-                                <td><input type="text" name="" id=""></td>
+                                <td></td>
+                                <td><input type="date" name="statement_date"></td>
+                                <td><input type="text" name="payment_method_id"></td>
                                 <td>
                                     Y <input type="radio" name="credit" value="1">
                                     N <input type="radio" name="credit" value="0">
@@ -127,9 +130,12 @@
                             <tr>
                                 <td><%=e.payment_id%></td>
                                 <td><%=e.statement_date%></td>
-                                <td><%=e.payment_method%></td>
-                                <td><%=e.credit%></td>
-                                <td><button>Edit</button></td>
+                                <td><%=e.payment_method_id%></td>
+                                <td><%= e.credit == 0 ? 'False' : 'True'%></td>
+                                <td>
+                                    <a href="/session/tour/manage_vouchers/<%=e.payment_id%>">Edit</a>
+                                    <a href="javascript: cancel(<%=e.payment_id%>)">Cancel</a>
+                                </td>
                             </tr>
                             <% }); %>
                         </tbody>

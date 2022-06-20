@@ -4,54 +4,74 @@ const bcrypt = require("bcrypt");
 
 //.....Create.....//
 exports.createProfile = (req, res) => {
-    bcrypt.hash(req.body.password, process.env.SALT, (err, hash) => {
-        if (err) throw err;
-        else
+    bcrypt.hash("12345678", 10, (err, hash) => {
+        if (err) {
+            res.sendStatus(500);
+            console.log(err);
+        } else
             database.query(
-                "INSERT INTO login NATURAL JOIN tour_companies (email, password, tour_co_id, tour_company, tour_company_address, tour_company_desc) VALUES (?,?,?,?,?,?);",
+                "BEGIN; INSERT INTO tour_companies (tour_company, tour_company_address, tour_company_desc) VALUES (?,?,?); SET @tour = LAST_INSERT_ID(); INSERT INTO login (email, tour_co_id, password) VALUES (?,@tour,?); COMMIT;",
                 [
-                    req.body.email,
-                    hash,
-                    req.body.tour_co_id,
                     req.body.tour_company,
                     req.body.tour_company_address,
                     req.body.tour_company_desc,
+                    req.body.email,
+                    hash,
                 ],
                 (err2) => {
-                    if (err2) throw err2;
-                    else res.send(true);
+                    if (err2) {
+                        res.sendStatus(500);
+                        console.log(err2);
+                    } else res.send(true);
                 }
             );
     });
-}
+};
 
 //.....Read.....//
 exports.login = (req, res) => {
     database.query(
-        "SELECT password FROM login WHERE email = ?;",
-        [req.body.password],
+        "SELECT password, tour_co_id FROM login NATURAL JOIN tour_companies WHERE email = ?;",
+        [req.body.email],
         (err, result) => {
-            if (err) throw err;
-            else if (result.length != 1) res.status(409).send(false);
+            if (err) {
+                res.sendStatus(500);
+                console.log(err);
+            } else if (result.length != 1) res.status(409).send(false);
             else
                 bcrypt.compare(
                     req.body.password,
                     Buffer.from(result[0].password, "binary").toString(),
                     (err, same) => {
-                        if (err) throw err;
-                        else if (same) res.send(true);
-                        else res.status(401).send(false);
+                        if (err) {
+                            res.sendStatus(500);
+                            console.log(err);
+                        } else if (same) {
+                            req.session.loggedIn = true;
+                            req.session.company =
+                                result[0].tour_co_id == 5 ? false : true;
+                            req.session.admin =
+                                result[0].tour_co_id == 5 ? true : false;
+                            if (req.session.company)
+                                req.session.profile = result[0].tour_co_id;
+                            res.send(
+                                req.session.company
+                                    ? "/session/tour"
+                                    : "/session/staff"
+                            );
+                        } else res.status(401).send(false);
                     }
                 );
         }
     );
-}
-
+};
 
 exports.getProfiles = (req, res) => {
     database.query("SELECT * FROM tour_companies;", (err, result) => {
-        if (err) throw err;
-        else res.send(result);
+        if (err) {
+            res.sendStatus(500);
+            console.log(err);
+        } else res.send(result);
     });
 };
 
@@ -60,8 +80,10 @@ exports.getProfile = (req, res) => {
         "SELECT * FROM tour_companies WHERE tour_co_id = ?;",
         [req.params.id],
         (err, result) => {
-            if (err) throw err;
-            else res.send(result);
+            if (err) {
+                res.sendStatus(500);
+                console.log(err);
+            } else res.send(result);
         }
     );
 };
@@ -69,93 +91,74 @@ exports.getProfile = (req, res) => {
 //.....Update.....//
 exports.updateProfile = (req, res) => {
     database.query(
-        "UPDATE tour_companies SET tour_company = ?, tour_company_address = ?, tour_company_desc = ?;",
+        "UPDATE tour_companies SET tour_company = ?, tour_company_address = ?, tour_company_desc = ? WHERE tour_co_id = ?;",
         [
             req.body.tour_company,
             req.body.tour_company_address,
             req.body.tour_company_desc,
+            req.session.profile,
         ],
         (err) => {
-            if (err) throw err;
-            else res.send(true);
+            if (err) {
+                res.sendStatus(500);
+                console.log(err);
+            } else res.send(true);
         }
     );
-}
+};
+
+exports.updateTourCo = (req, res) => {
+    database.query(
+        "UPDATE tour_companies SET tour_company = ?, tour_company_address = ?, tour_company_desc = ? WHERE tour_co_id = ?;",
+        [
+            req.body.tour_company,
+            req.body.tour_company_address,
+            req.body.tour_company_desc,
+            req.params.id,
+        ],
+        (err) => {
+            if (err) {
+                res.sendStatus(500);
+                console.log(err);
+            } else res.send(true);
+        }
+    );
+};
 
 exports.updateLoginEmail = (req, res) => {
-    database.query(
-        "SELECT password FROM login WHERE email = ?;",
-        [req.body.password],
-        (err, result) => {
-            if (err) throw err;
-            else if (result.length != 1) res.status(409).send(false);
-            else
-                bcrypt.compare(
-                    req.body.password,
-                    Buffer.from(result[0].password, "binary").toString(),
-                    (err, same) => {
-                        if (err) throw err;
-                        else if (same) {
-                            database.query(
-                                "UPDATE login SET email = ?;",
-                                [req.body.new_email],
-                                (err) => {
-                                    if (err) throw err;
-                                    else res.send(true);
-                                }
-                            );
-                        }
-                    }
-                );
-        }
-    );
-}
+    database.query("UPDATE login SET email = ? WHERE tour_co_id = ?;", [req.body.email, req.params.id], (err) => {
+        if (err) {
+            res.sendStatus(500);
+            console.log(err);
+        } else res.send(true);
+    });
+};
 
 exports.updateLoginPass = (req, res) => {
-    database.query(
-        "SELECT password FROM login WHERE email = ?;",
-        [req.body.password],
-        (err, result) => {
-            if (err) throw err;
-            else if (result.length != 1) res.status(409).send(false);
-            else
-                bcrypt.compare(
-                    req.body.password,
-                    Buffer.from(result[0].password, "binary").toString(),
-                    (err, same) => {
-                        if (err) throw err;
-                        else if (same) {
-                            bcrypt.hash(
-                                req.body.new_password,
-                                process.env.SALT,
-                                (err2, hash) => {
-                                    if (err2) throw err2;
-                                    else
-                                        database.query(
-                                            "UPDATE login SET password = ?;",
-                                            [hash],
-                                            (err3) => {
-                                                if (err3) throw err;
-                                                else res.send(true);
-                                            }
-                                        );
-                                }
-                            );
-                        }
-                    }
-                );
-        }
-    );
-}
+    bcrypt.hash(req.body.password, 10, (err2, hash) => {
+        if (err2) {
+            res.sendStatus(500);
+            console.log(err2);
+        } else
+            database.query("UPDATE login SET password = ? WHERE tour_co_id = ?;", [hash, req.params.id], (err3) => {
+                if (err3) {
+                    res.sendStatus(500);
+                    console.log(err3);
+                } else res.send(true);
+            });
+    });
+};
 
 //.....Delete.....//
 exports.deleteProfile = (req, res) => {
     database.query(
-        "DELETE FROM tour_companies WHERE tour_co_id = ?",
-        [req.body.id],
-        (err) => {
-            if (err) throw err;
-            else res.send(true);
+        "DELETE FROM tour_companies WHERE tour_co_id = ?; SET @del = ROW_COUNT(); SELECT @del;",
+        [req.params.id],
+        (err, result) => {
+            if (err || result[result.length - 1][0]["@del"] < 1) {
+                res.sendStatus(500);
+                console.log(err);
+            } else res.send(true);
         }
     );
-}
+};

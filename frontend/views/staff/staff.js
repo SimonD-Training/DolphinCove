@@ -7,7 +7,7 @@ const staff = (req, res) => {
             if (err) throw err;
             else {
                 database.query(
-                    "SELECT * FROM bookings NATURAL JOIN clients, hotels, programs;",
+                    "SELECT * FROM bookings NATURAL JOIN clients NATURAL JOIN hotels NATURAL JOIN payments NATURAL JOIN programs ORDER BY date DESC;",
                     (err, result2) => {
                         if (err) throw err;
                         else

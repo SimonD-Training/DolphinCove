@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Make A Booking</title>
+        <link rel="stylesheet" href="/global.css" />
+        <link rel="stylesheet" href="/booking.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+            integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+            crossorigin="anonymous"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script src="/booking.js"></script>
+    </head>
+    <body>
+        <div id="message"></div>
+        <section class="nav">
+            <div class="logo">
+                <a href="/"><img src="./assets/logo.png" alt="" /></a>
+            </div>
+            <div class="text">
+                <ul>
+                    <li><a href="/programs">PROGRAMS</a></li>
+                    <li><a href="/companies">TOUR COMPANIES</a></li>
+                    <li><a href="<%=url%>"><%=loggedIn%></a></li>
+                </ul>
+                <a href="/contact"
+                    ><button>
+                        <i class="fa-solid fa-phone"></i> 1-866-393-5158
+                    </button></a
+                >
+            </div>
+        </section>
+        <section class="sub-nav">
+            <div class="list">
+                <ul class="list2">
+                    <li>PARKS</li>
+                    <li>INFORMATION</li>
+                    <li>NEWS</li>
+                    <li>DEALS</li>
+                </ul>
+            </div>
+        </section>
+        <section>
+            <div class="banner-image">
+                <img
+                    src="./assets/locacion-Dolphin-Cove-Negril.jpg"
+                    alt=""
+                    srcset=""
+                />
+            </div>
+        </section>
+        <section class="p-10" style="display: flex; justify-content: center">
+            <table class="w-100 shadow-xl rounded-md border-black bg-[#C3C1C1]">
+                <thead class="rounded-xl">
+                    <tr class="text-lg">
+                        <th>Apply</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Date</th>
+                        <th>Hotel</th>
+                        <th>Program</th>
+                        <th>Payment Method</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <form id="form1">
+                    <tfoot>
+                        <tr>
+                            <td>
+                                <button type="submit">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <input required type="text" name="fname" />
+                            </td>
+                            <td>
+                                <input required type="text" name="lname" />
+                            </td>
+                            <td>
+                                <input required type="date" name="date" id="limiter" />
+                            </td>
+                            <td>
+                                <select required name="hotel_id">
+                                    <% hotels.forEach((e) => { %>
+                                    <option value="<%=e.hotel_id%>">
+                                        <%=e.hotel%>
+                                    </option>
+                                    <% }); %>
+                                </select>
+                            </td>
+                            <td>
+                                <select required name="program_id" id="programs">
+                                    <option selected>None Selected</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select required name="payment_method_id">
+                                    <option selected>None Selected</option>
+                                    <% payment_methods.forEach((e) => { %>
+                                    <option value="<%=e.payment_method_id%>">
+                                        <%=e.payment_method%>
+                                    </option>
+                                    <% }); %>
+                                </select>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </form>
+            </table>
+        </section>
+        <section>
+            <div class="text-heading">
+                <h1>Come closer to Jamaica's nature!</h1>
+            </div>
+            <div class="test">
+                <div>
+                    <h4>
+                        Dolphin Cove Montego Bay is in a magnificent property
+                        situated on 23 acres of ocean frontage in just a short
+                        car ride from Negril. You will have the opportunity to
+                        interact and swim with dolphins, enjoying the thrill and
+                        love of these amazing lovable marine mammals.
+                    </h4>
+                </div>
+                <div>
+                    <h4>
+                        Did you know that swimming with dolphins is considered
+                        one of the top ten bucket list items? When you come to
+                        Dolphin Cove Montego Bay, you not only get a chance to
+                        live this dream; you have the opportunity to interact
+                        with stingrays. Montego Bay Dolphin Cove is a place
+                        where you come for the day but remember for a lifetime.
+                    </h4>
+                </div>
+                <div>
+                    <h4>
+                        Here is the place for the best tours in Montego Bay
+                        since the entrance fee includes a day enjoying lots of
+                        fun activities. There is something for everyone!.
+                    </h4>
+                </div>
+                <div>
+                    <h4>Interact with stingrays Pet the camels</h4>
+                </div>
+                <div>
+                    <h4>
+                        Entrance is included with all Montego Bay dolphin swims
+                        and sharks interactive programs. Once at Dolphin Cove,
+                        you’ll have the Experience of a Lifetime!
+                    </h4>
+                </div>
+            </div>
+        </section>
+        <section class="footer">
+            <div class="section1">
+                <div>Information</div>
+                <div>News</div>
+                <div>About Us</div>
+                <div>Investor Relations</div>
+                <div>Private Policy</div>
+                <div>Terms and Conditions</div>
+            </div>
+            <div class="section2">
+                <div>CONTACT US</div>
+                <div class="number">1-877-344-3385</div>
+                <div>Canada 1-866-793-1905</div>
+                <div>United Kindom 0-800-680-0420</div>
+                <div>Mexico 01-800-727-5391</div>
+                <div>Dominican Republic 1-88-751-9005</div>
+                <div>United States 1-866-393-5158</div>
+                <div>Contact Us</div>
+                <div>PARTNERS:</div>
+                <span
+                    ><img src="./assets/dd-logo.png" alt="" />
+                    <img src="./assets/dc-logo.png" alt=""
+                /></span>
+            </div>
+        </section>
+    </body>
+</html>

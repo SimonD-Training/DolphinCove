@@ -7,6 +7,7 @@ dotenv.config();
 
 //.....MySQL Login.....//
 let database = mysql.createConnection({
+    multipleStatements: true,
     host: process.env.HOST,
     user: process.env.USER,
     password: process.env.PASSWORD,
