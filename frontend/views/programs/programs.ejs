@@ -33,6 +33,9 @@
                     <li><a href="/companies">TOUR COMPANIES</a></li>
                     <li><a href="/booking">BOOKING</a></li>
                     <li><a href="<%=url%>"><%=loggedIn%></a></li>
+                    <% if(loggedIn){%>
+                        <li><a href="<%=dashurl%>">DASHBOARD</a></li>
+                    <%}%>
                   </ul>
                   <a href="/contact"><button><i class="fa-solid fa-phone"></i> 1-866-393-5158</button></a>
             </div>

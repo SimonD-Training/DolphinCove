@@ -45,6 +45,9 @@
           <li><a href="/companies">TOUR COMPANIES</a></li>
           <li><a href="/booking">BOOKING</a></li>
           <li><a href="<%=url%>"><%=loggedIn%></a></li>
+          <% if(loggedIn){%>
+            <li><a href="<%=dashurl%>">DASHBOARD</a></li>
+        <%}%>
         </ul>
       </div>
     </nav>
